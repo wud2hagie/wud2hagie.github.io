@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PenLine, Calendar, Clock, ArrowUpRight, X, BookOpen } from "lucide-react";
+import { PenLine, Calendar, Clock, ArrowUpRight, BookOpen } from "lucide-react";
 import { SectionHeading } from "./section-heading";
+import { SectionTransition } from "@/components/micro/section-transition";
 import {
   Dialog,
   DialogContent,
@@ -29,23 +30,26 @@ export function Blog() {
   const [openSlug, setOpenSlug] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    // Load embedded markdown posts (client-side)
     void loadPosts().then(setPosts);
   }, []);
 
   const openPost = posts.find((p) => p.slug === openSlug);
 
   return (
-    <section id="blog" className="relative py-20 sm:py-28 border-t border-border/60">
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+    <SectionTransition
+      id="blog"
+      className="relative py-20 sm:py-32 border-t border-border/40"
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <SectionHeading
+          index="12"
           eyebrow="Blog"
           title="Math Insights & Teaching Notes"
           icon={PenLine}
           description="Occasional writing on numerical methods, blended learning, and the craft of academic communication."
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, i) => (
             <motion.article
               key={post.slug}
@@ -53,14 +57,13 @@ export function Blog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:border-accent/40"
+              className="group flex flex-col overflow-hidden border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-gold/40"
             >
               <button
                 type="button"
                 onClick={() => setOpenSlug(post.slug)}
-                className="flex h-full flex-col p-5 text-left"
+                className="flex h-full flex-col p-6 text-left"
               >
-                {/* Reading meta */}
                 <div className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
@@ -72,15 +75,15 @@ export function Blog() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 font-serif-display text-lg font-semibold leading-snug text-foreground transition-colors group-hover:text-accent">
+                <h3 className="mt-4 font-serif-display text-xl font-semibold leading-snug text-foreground transition-colors group-hover:text-gold">
                   {post.title}
                 </h3>
 
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {post.excerpt}
                 </p>
 
-                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <span className="mt-5 pt-4 border-t border-border/60 inline-flex items-center gap-1.5 text-xs font-semibold text-gold">
                   Read article
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
@@ -100,7 +103,7 @@ export function Blog() {
       <Dialog open={!!openPost} onOpenChange={(o) => !o && setOpenSlug(null)}>
         <DialogContent className="max-h-[85vh] overflow-hidden !max-w-3xl">
           <DialogHeader>
-            <DialogTitle className="font-serif-display text-xl">
+            <DialogTitle className="font-serif-display text-2xl">
               {openPost?.title}
             </DialogTitle>
             <DialogDescription className="flex items-center gap-3 text-xs">
@@ -116,7 +119,7 @@ export function Blog() {
           </DialogHeader>
 
           <div className="overflow-y-auto max-h-[60vh] pr-1">
-            <article className="prose prose-stone dark:prose-invert max-w-none prose-headings:font-serif-display prose-headings:font-semibold prose-headings:tracking-tight prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-a:text-accent prose-strong:text-foreground prose-blockquote:border-l-accent prose-blockquote:text-muted-foreground">
+            <article className="prose prose-stone dark:prose-invert max-w-none prose-headings:font-serif-display prose-headings:font-semibold prose-headings:tracking-tight prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-a:text-gold prose-strong:text-foreground prose-blockquote:border-l-gold prose-blockquote:text-muted-foreground prose-code:before:hidden prose-code:after:hidden">
               {openPost && (
                 <ReactMarkdown
                   components={{
@@ -125,7 +128,7 @@ export function Blog() {
                       const isInline = !match && !String(children).includes("\n");
                       return isInline ? (
                         <code
-                          className="rounded bg-secondary px-1 py-0.5 text-[0.85em] font-mono text-accent"
+                          className="rounded bg-secondary px-1 py-0.5 text-[0.85em] font-mono text-gold"
                           {...props}
                         >
                           {children}
@@ -137,9 +140,9 @@ export function Blog() {
                           language={match?.[1] || "text"}
                           PreTag="div"
                           customStyle={{
-                            borderRadius: "0.5rem",
+                            borderRadius: "0.25rem",
                             fontSize: "0.85rem",
-                            background: "oklch(0.95 0.018 75)",
+                            background: "oklch(0.95 0.018 80)",
                           }}
                         >
                           {String(children).replace(/\n$/, "")}
@@ -155,7 +158,7 @@ export function Blog() {
           </div>
         </DialogContent>
       </Dialog>
-    </section>
+    </SectionTransition>
   );
 }
 
@@ -168,8 +171,6 @@ function formatDate(iso: string): string {
   });
 }
 
-// Static imports for the markdown content
-// Vite-style raw imports won't work in Next.js; instead we fetch at runtime.
 async function loadPosts(): Promise<BlogPost[]> {
   const slugs = [
     "2024-08-15-beauty-of-numerical-analysis",
@@ -197,7 +198,7 @@ function parseMarkdown(slug: string, raw: string): BlogPost {
   let title = slug;
   let date = "";
   let readingTime = "";
-  const bodyStart = lines.findIndex((l, i) => i > 0 && /^#\s/.test(l));
+
   const titleMatch = lines.find((l) => l.startsWith("# "));
   if (titleMatch) title = titleMatch.replace(/^#\s+/, "").trim();
 
@@ -207,20 +208,20 @@ function parseMarkdown(slug: string, raw: string): BlogPost {
   const readMatch = raw.match(/\*\*Reading time:\*\*\s*([0-9]+\s*min)/);
   if (readMatch) readingTime = readMatch[1];
 
-  // Strip meta header
   const body = raw
     .replace(/^# .*\n/, "")
     .replace(/\*\*Published:.*\n/, "")
     .replace(/\*\*Reading time:.*\n/, "")
     .trim();
 
-  const excerpt = body
-    .replace(/[#>*`_]/g, "")
-    .split("\n")
-    .filter((l) => l.trim().length > 0)
-    .slice(0, 3)
-    .join(" ")
-    .slice(0, 220) + "…";
+  const excerpt =
+    body
+      .replace(/[#>*`_]/g, "")
+      .split("\n")
+      .filter((l) => l.trim().length > 0)
+      .slice(0, 3)
+      .join(" ")
+      .slice(0, 220) + "…";
 
   return {
     slug,

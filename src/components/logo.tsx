@@ -10,10 +10,8 @@ interface LogoProps {
 }
 
 /**
- * Animated SVG logo.
- * A stylized "W" formed by a spline curve that draws itself on mount,
- * accompanied by an integral sign ∫ on the left as a nod to calculus
- * and numerical analysis.
+ * Animated SVG logo — refined editorial mark.
+ * Integral sign + W-spline curve in gold, on ivory background.
  */
 export function Logo({
   size = 40,
@@ -38,9 +36,9 @@ export function Logo({
           y="2"
           width="44"
           height="44"
-          rx="12"
+          rx="10"
           fill="currentColor"
-          className="text-accent"
+          className="text-gold"
           initial={animated ? { opacity: 0, scale: 0.85 } : false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -48,7 +46,7 @@ export function Logo({
         {/* Integral sign — draws quickly */}
         <motion.path
           d="M 14 12 C 14 14, 14 34, 14 36 C 14 38, 13 39, 11 39"
-          stroke="oklch(0.985 0.012 75)"
+          stroke="oklch(0.965 0.012 80)"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,7 +58,7 @@ export function Logo({
         {/* W formed by spline curve — the main draw animation */}
         <motion.path
           d="M 18 16 L 22 32 L 26 22 L 30 32 L 34 16"
-          stroke="oklch(0.985 0.012 75)"
+          stroke="oklch(0.965 0.012 80)"
           strokeWidth="2.6"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -78,15 +76,15 @@ export function Logo({
           cx="34"
           cy="16"
           r="2"
-          fill="oklch(0.985 0.012 75)"
+          fill="oklch(0.965 0.012 80)"
           initial={animated ? { scale: 0, opacity: 0 } : false}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, delay: 1.7, ease: "backOut" }}
         />
       </svg>
       {showWordmark && (
-        <span className="font-serif-display text-[1.05rem] font-semibold tracking-tight text-foreground">
-          Wudneh<span className="text-accent">.</span>
+        <span className="font-serif-display text-[1.1rem] font-semibold tracking-tight text-foreground">
+          Wudneh Tilahun<span className="text-gold">.</span>
         </span>
       )}
     </span>

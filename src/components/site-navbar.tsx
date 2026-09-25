@@ -24,44 +24,43 @@ export function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/85 backdrop-blur-md border-b border-border/60 shadow-sm"
-            : "bg-transparent"
+            ? "bg-background/85 backdrop-blur-md border-b border-border/40"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
-        <nav className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+        <nav className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+          <div className="flex h-20 items-center justify-between">
             <a href="#home" className="flex items-center" aria-label="Home">
               <Logo size={36} />
             </a>
 
             {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-6">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="relative px-3 py-2 text-sm font-medium text-foreground/75 hover:text-foreground transition-colors group"
+                  className="relative text-sm font-medium text-foreground/70 hover:text-foreground transition-colors group"
                 >
                   {link.label}
-                  <span className="absolute left-3 right-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
-              <div className="ml-2">
-                <ThemeToggle />
-              </div>
+              <div className="ml-2 h-6 w-px bg-border" />
+              <ThemeToggle />
             </div>
 
             {/* Mobile toggle */}
-            <div className="flex md:hidden items-center gap-2">
+            <div className="flex lg:hidden items-center gap-2">
               <ThemeToggle />
               <button
                 type="button"
                 aria-label="Toggle menu"
                 aria-expanded={mobileOpen}
                 onClick={() => setMobileOpen((v) => !v)}
-                className="h-10 w-10 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center hover:bg-accent/10 hover:border-accent/40 transition-colors"
+                className="h-10 w-10 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center hover:bg-gold/5 hover:border-gold/40 transition-colors"
               >
                 {mobileOpen ? (
                   <X className="h-[18px] w-[18px]" />
@@ -82,15 +81,15 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 md:hidden bg-background/95 backdrop-blur-md border-b border-border/60"
+            className="fixed top-20 left-0 right-0 z-40 lg:hidden bg-background/95 backdrop-blur-md border-b border-border/40"
           >
-            <nav className="mx-auto max-w-6xl px-5 py-3 flex flex-col">
+            <nav className="mx-auto max-w-7xl px-6 py-3 flex flex-col">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-3 py-3 text-base font-medium text-foreground/85 hover:text-accent hover:bg-accent/5 rounded-lg transition-colors"
+                  className="px-3 py-3 text-base font-medium text-foreground/85 hover:text-gold transition-colors border-b border-border/30 last:border-0"
                 >
                   {link.label}
                 </a>

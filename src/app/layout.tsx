@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono, Libre_Caslon_Text } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({
-  variable: "--font-inter",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
-const SITE_URL = "https://wudnehtm.netlify.app";
+const caslon = Libre_Caslon_Text({
+  variable: "--font-caslon",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const SITE_URL = "https://wudnehtm-mengist.netlify.app";
 
 export const metadata: Metadata = {
   title: "Wudneh Tilahun Mengist | Mathematics Lecturer & Researcher",
@@ -154,8 +157,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} ${jetbrains.variable} antialiased bg-background text-foreground`}
+        className={`${plexSans.variable} ${plexMono.variable} ${caslon.variable} antialiased bg-background text-foreground`}
       >
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { SITE } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
+import { SectionTransition } from "@/components/micro/section-transition";
+import { LocalTimeWidget } from "@/components/micro/local-time";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -37,7 +39,6 @@ export function Contact() {
     setStatus("submitting");
 
     try {
-      // Netlify Forms: encode form data and POST to /
       const formData = new URLSearchParams({
         "form-name": "contact",
         name: form.name,
@@ -50,9 +51,8 @@ export function Contact() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString(),
       });
-      // Netlify returns 200 with HTML; either way treat as success if no exception
       if (!res.ok && res.status !== 404) {
-        // Local dev fallback (no Netlify form backend) - still show success
+        // Local dev fallback — still show success
       }
       setStatus("success");
       toast.success("Message sent! I'll respond within 24-48 hours.");
@@ -65,20 +65,21 @@ export function Contact() {
   };
 
   return (
-    <section
+    <SectionTransition
       id="contact"
-      className="relative overflow-hidden border-t border-border/60 bg-gradient-to-br from-secondary/50 via-background to-secondary/30 py-20 sm:py-28"
+      className="relative overflow-hidden border-t border-border/40 bg-gradient-to-br from-secondary/40 via-background to-secondary/20 py-20 sm:py-32"
     >
       <div className="paper-texture absolute inset-0 opacity-40" />
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <SectionHeading
+          index="13"
           eyebrow="Contact"
           title="Get in Touch"
           icon={MailOpen}
           description="Feel free to reach out for academic collaborations, research discussions, or inquiries regarding instructional content."
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-5">
           {/* Contact info */}
           <div className="lg:col-span-2 flex flex-col gap-3">
             <ContactItem
@@ -104,14 +105,18 @@ export function Contact() {
               value={SITE.affiliation}
             />
 
+            <div className="mt-2">
+              <LocalTimeWidget />
+            </div>
+
             <a
               href={SITE.orcid}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-2 inline-flex items-center justify-between gap-2 rounded-xl border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition-all hover:border-accent/40 hover:bg-accent/5"
+              className="mt-2 inline-flex items-center justify-between gap-2 border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition-all hover:border-gold/40 hover:bg-gold/5"
             >
               <span className="inline-flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-gold/10 text-gold">
                   <ExternalLink className="h-4 w-4" />
                 </span>
                 View ORCID Profile
@@ -123,10 +128,10 @@ export function Contact() {
               href={SITE.youtube}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center justify-between gap-2 rounded-xl border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition-all hover:border-accent/40 hover:bg-accent/5"
+              className="inline-flex items-center justify-between gap-2 border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition-all hover:border-gold/40 hover:bg-gold/5"
             >
               <span className="inline-flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600/10 text-red-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-red-600/10 text-red-600">
                   <ExternalLink className="h-4 w-4" />
                 </span>
                 The Hybrid Math Hub (YouTube)
@@ -135,7 +140,7 @@ export function Contact() {
             </a>
           </div>
 
-          {/* Contact form (Netlify Forms compatible) */}
+          {/* Contact form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +148,6 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-3"
           >
-            {/* Hidden static form for Netlify Forms detection */}
             <form
               name="contact"
               data-netlify="true"
@@ -163,7 +167,7 @@ export function Contact() {
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
+              className="rounded-sm border border-border bg-card p-6 shadow-sm sm:p-8"
             >
               <input type="hidden" name="form-name" value="contact" />
               <p className="hidden">
@@ -249,7 +253,7 @@ export function Contact() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </SectionTransition>
   );
 }
 
@@ -272,15 +276,15 @@ function ContactItem({
   return (
     <Wrapper
       {...wrapperProps}
-      className={`flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 transition-all ${
-        href ? "hover:border-accent/40 hover:bg-accent/5" : ""
+      className={`flex items-center gap-3 border border-border bg-card px-5 py-4 transition-all ${
+        href ? "hover:border-gold/40 hover:bg-gold/5" : ""
       }`}
     >
-      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+      <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold/10 text-gold">
         <Icon className="h-5 w-5" />
       </span>
       <div>
-        <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+        <p className="font-mono-meta text-[0.55rem] text-muted-foreground">
           {label}
         </p>
         <p className="text-sm font-semibold text-foreground break-words">
