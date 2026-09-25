@@ -32,10 +32,12 @@ In my research, I've used quintic Hermite splines and adaptive B-spline
 frameworks to capture sharp boundary layers with stunning precision. The
 mathematics is rigorous, but the *insight* — that's what we teach for.
 
-## Try it yourself
+## Where to start
 
-If you'd like a gentle introduction, the Hybrid Math Hub YouTube channel has
-a step-by-step walkthrough of the collocation scheme. Start there, then come
-back to the derivations.
+If you're new to the field, I'd recommend beginning with my course
+introduction video on the Hybrid Math Hub YouTube channel — it walks
+through how the Calculus I course is structured and how to navigate
+blended learning effectively. From there, the derivations become much
+more approachable.
 
 — *Wudneh*

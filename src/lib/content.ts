@@ -54,11 +54,11 @@ export const ABOUT = {
 } as const;
 
 export const STATS = [
-  { label: "Years Teaching", value: 14, suffix: "+" },
+  { label: "Years Teaching", value: 15, suffix: "+" },
   { label: "Undergraduate Courses", value: 12, suffix: "" },
   { label: "Published Citations", value: 13, suffix: "" },
   { label: "Publication Accesses", value: 1212, suffix: "+" },
-  { label: "YouTube Subscribers", value: 1200, suffix: "+" },
+  { label: "YouTube Subscribers", value: 15, suffix: "" },
   { label: "Faculty Trained (IDLT)", value: 80, suffix: "+" },
 ] as const;
 
@@ -280,22 +280,22 @@ export const TESTIMONIALS = [
 
 export const YOUTUBE_VIDEOS = [
   {
-    id: "duT1H5LQ-mY",
-    title: "Numerical Methods — Introduction & Course Overview",
+    id: "oose5hJv__Q",
+    title: "Calculus I (Math 2021) — Course Introduction & Blended Learning Guide",
     description:
-      "A guided tour of numerical analysis: when, why, and how we approximate solutions to mathematical problems.",
+      "Course introduction and blended learning guide for Calculus I (Math 2021) at Debre Tabor University — how the course is structured, what to expect, and how to succeed in a hybrid learning environment.",
   },
   {
-    id: "VfKcO-3Z_oM",
-    title: "Calculus Made Visual — Limits & Continuity",
+    id: "18W9xDMN6Yg",
+    title: "Multimedia Principles for Online Courses",
     description:
-      "An intuitive visual introduction to limits, continuity, and the foundational language of calculus.",
+      "Evidence-based multimedia design principles for creating effective online courses — covering the modality, redundancy, and coherence principles every educator should know.",
   },
   {
-    id: "qjB6c6LNYu8",
-    title: "Burgers' Equation — Spline Collocation Walkthrough",
+    id: "Mmchb0nHstg",
+    title: "Reducing Anxiety through Better Design — A UDL-Based Redesign of the Learner Analysis",
     description:
-      "Step-by-step derivation and Python implementation of the quintic Hermite spline collocation scheme.",
+      "Applying Universal Design for Learning (UDL) principles to redesign course materials in ways that reduce learner anxiety and broaden accessibility for all students.",
   },
 ] as const;
 
