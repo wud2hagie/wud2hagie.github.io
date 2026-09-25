@@ -1,0 +1,41 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C2683C"/>
+      <stop offset="50%" stop-color="#D88B5A"/>
+      <stop offset="100%" stop-color="#8B4513"/>
+    </linearGradient>
+    <linearGradient id="overlay" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.5"/>
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#FDF8F0" fill-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#dots)"/>
+
+  <!-- Math curve backdrop -->
+  <g opacity="0.15" stroke="#FDF8F0" fill="none" stroke-width="1.5">
+    <path d="M 50 500 Q 200 300 400 500 T 750 500" />
+    <path d="M 50 550 Q 200 350 400 550 T 750 550" stroke-opacity="0.6"/>
+    <path d="M 50 600 Q 200 400 400 600 T 750 600" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Initials monogram -->
+  <text x="400" y="450" font-family="Playfair Display, Georgia, serif" font-size="280" font-weight="700" fill="#FDF8F0" text-anchor="middle" opacity="0.95">WTM</text>
+
+  <!-- Decorative integral -->
+  <text x="400" y="580" font-family="Georgia, serif" font-size="64" font-style="italic" fill="#FDF8F0" text-anchor="middle" opacity="0.7">∫₀<tspan baseline-shift="super" font-size="32">∞</tspan> e<tspan baseline-shift="super" font-size="32">-x²</tspan> dx = √π/2</text>
+
+  <!-- Bottom overlay -->
+  <rect y="800" width="800" height="200" fill="url(#overlay)"/>
+
+  <!-- Name plate -->
+  <text x="400" y="880" font-family="Playfair Display, Georgia, serif" font-size="44" font-weight="700" fill="#FDF8F0" text-anchor="middle">Wudneh Tilahun Mengist</text>
+  <text x="400" y="920" font-family="Inter, sans-serif" font-size="20" font-weight="500" fill="#FDF8F0" text-anchor="middle" opacity="0.85">Mathematics Lecturer &amp; Researcher</text>
+  <text x="400" y="950" font-family="Inter, sans-serif" font-size="14" fill="#FDF8F0" text-anchor="middle" opacity="0.7">Debre Tabor University · Ethiopia</text>
+</svg>

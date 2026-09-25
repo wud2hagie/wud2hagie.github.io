@@ -110,7 +110,7 @@ export function CV() {
             Want a printable summary of my credentials?
           </p>
           <a
-            href="/api/cv.pdf"
+            href="/cv.pdf"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-all hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5"
