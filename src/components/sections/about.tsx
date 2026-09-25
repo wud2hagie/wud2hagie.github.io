@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { motion } from "framer-motion";
 import {
   Calculator,
@@ -8,6 +9,7 @@ import {
   Sigma,
   ExternalLink,
   CheckCircle2,
+  Camera,
 } from "lucide-react";
 import { ABOUT, SITE } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
@@ -68,14 +70,18 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Snapshot card */}
+          {/* Right column: photo collage + snapshot */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2"
+            className="lg:col-span-2 flex flex-col gap-4"
           >
+            {/* Photo collage */}
+            <PhotoCollage />
+
+            {/* Snapshot card */}
             <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-lg shadow-foreground/5">
               <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/10 blur-2xl" />
               <h3 className="font-serif-display text-lg font-semibold text-foreground">
@@ -137,6 +143,113 @@ export function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+function PhotoCollage() {
+  const [mainFailed, setMainFailed] = React.useState(false);
+  const [secondFailed, setSecondFailed] = React.useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6 }}
+      className="relative"
+    >
+      {/* Glow */}
+      <div className="absolute -inset-3 rounded-2xl bg-accent/15 blur-2xl" />
+
+      <div className="relative grid grid-cols-5 gap-3">
+        {/* Main photo (tall) */}
+        <div className="col-span-3 aspect-[3/4] overflow-hidden rounded-2xl border border-border/60 bg-card shadow-lg">
+          {!mainFailed ? (
+            <img
+              src="/myphoto.jpg"
+              alt={`${SITE.name} — Office portrait`}
+              className="h-full w-full object-cover"
+              onError={() => setMainFailed(true)}
+            />
+          ) : (
+            <BrandedPhoto label="Office Portrait" />
+          )}
+        </div>
+
+        {/* Secondary photo (square) + caption */}
+        <div className="col-span-2 flex flex-col gap-3">
+          <div className="aspect-square overflow-hidden rounded-2xl border border-border/60 bg-card shadow-lg">
+            {!secondFailed ? (
+              <img
+                src="/my2photo.jpg"
+                alt={`${SITE.name} — Teaching context`}
+                className="h-full w-full object-cover"
+                onError={() => setSecondFailed(true)}
+              />
+            ) : (
+              <BrandedPhoto label="Teaching Context" small />
+            )}
+          </div>
+
+          {/* Caption card */}
+          <div className="flex-1 rounded-2xl border border-border bg-gradient-to-br from-secondary/60 via-card to-secondary/40 p-4">
+            <div className="flex items-center gap-2 text-accent">
+              <Camera className="h-4 w-4" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider">
+                Debre Tabor University
+              </span>
+            </div>
+            <p className="mt-2 font-serif-display text-sm font-semibold leading-snug text-foreground">
+              Mathematics Department
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+              Where numerical methods meet undergraduate education — and
+              every lesson becomes a building block for Ethiopia&apos;s
+              future scientists.
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function BrandedPhoto({
+  label,
+  small = false,
+}: {
+  label: string;
+  small?: boolean;
+}) {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-accent/30 via-accent/10 to-secondary p-4 text-center">
+      {/* Subtle decorative curve */}
+      <svg
+        viewBox="0 0 100 100"
+        className="absolute inset-0 h-full w-full opacity-20"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0 60 Q 25 40 50 55 T 100 50"
+          stroke="currentColor"
+          className="text-accent"
+          strokeWidth="1"
+          fill="none"
+        />
+      </svg>
+      <div className="relative">
+        <div
+          className={`font-serif-display font-bold text-accent ${
+            small ? "text-4xl" : "text-6xl"
+          }`}
+        >
+          WTM
+        </div>
+        <p className="mt-2 text-[10px] uppercase tracking-wider text-muted-foreground">
+          {label}
+        </p>
+      </div>
+    </div>
   );
 }
 

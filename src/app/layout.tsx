@@ -44,9 +44,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Wudneh Tilahun Mengist" }],
   creator: "Wudneh Tilahun Mengist",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+    ],
     shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    apple: "/apple-touch-icon.svg",
   },
   metadataBase: new URL(SITE_URL),
   openGraph: {

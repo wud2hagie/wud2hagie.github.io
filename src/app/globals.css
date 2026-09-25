@@ -234,3 +234,38 @@
 .reveal-up {
   animation: reveal-up 0.7s ease-out forwards;
 }
+
+/* Print stylesheet — for CV section */
+@media print {
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  section {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 1rem 0 !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

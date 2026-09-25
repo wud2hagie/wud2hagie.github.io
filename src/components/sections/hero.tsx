@@ -283,12 +283,12 @@ function PhotoFrame() {
             onError={() => setPhotoFailed(true)}
           />
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-accent/30 via-accent/10 to-secondary p-6 text-center">
-            <div className="font-serif-display text-7xl font-bold text-accent">WTM</div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Profile photo pending upload
-            </p>
-          </div>
+          // Branded SVG fallback with WTM monogram
+          <img
+            src="/profile-photo.svg"
+            alt={`${SITE.name} — branded monogram placeholder`}
+            className="h-full w-full object-cover"
+          />
         )}
 
         {/* Name tag */}
