@@ -22,11 +22,11 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`flex flex-col gap-3 ${
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`flex flex-col gap-2 ${
         align === "center" ? "items-center text-center" : "items-start text-left"
       }`}
     >
@@ -52,7 +52,7 @@ export function SectionHeading({
       </h2>
       {description && (
         <p
-          className={`max-w-2xl text-base leading-relaxed text-muted-foreground mt-2 ${
+          className={`max-w-2xl text-sm leading-relaxed text-muted-foreground mt-1 ${
             align === "center" ? "mx-auto" : ""
           }`}
         >
@@ -60,7 +60,7 @@ export function SectionHeading({
         </p>
       )}
       <div
-        className={`mt-3 h-px bg-gradient-to-r from-gold/60 to-transparent w-24 ${
+        className={`mt-2 h-px bg-gradient-to-r from-gold/60 to-transparent w-24 ${
           align === "center" ? "mx-auto" : ""
         }`}
       />

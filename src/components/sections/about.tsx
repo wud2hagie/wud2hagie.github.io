@@ -12,7 +12,6 @@ import {
   Camera,
 } from "lucide-react";
 import { ABOUT, SITE, INSTITUTIONS } from "@/lib/content";
-import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
 import { ReadMore } from "@/components/micro/read-more";
 
@@ -27,27 +26,35 @@ export function About() {
   return (
     <SectionTransition
       id="about"
-      className="relative py-20 sm:py-32 border-t border-border/40"
+      className="relative py-16 sm:py-20 border-t border-border/40"
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <SectionHeading
-          index="00"
-          eyebrow="About"
-          title="Professional Profile"
-          icon={GraduationCap}
-          description="A brief overview of my background, technical expertise, and approach to mathematics education."
-        />
+        {/* Asymmetric layout: heading + photo side by side */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+          {/* Left: heading + bio */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            {/* Inline section heading (not full-width) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col gap-2"
+            >
+              <div className="flex items-center gap-3">
+                <span className="font-mono-meta text-gold">00</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-sm bg-gold/10 text-gold">
+                  <GraduationCap className="h-4 w-4" />
+                </span>
+                <span className="font-mono-meta text-gold">About</span>
+              </div>
+              <h2 className="font-serif-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] leading-[1.1]">
+                Professional Profile
+              </h2>
+              <div className="h-px bg-gradient-to-r from-gold/60 to-transparent w-16" />
+            </motion.div>
 
-        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-12">
-          {/* Bio */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-7 flex flex-col gap-4"
-          >
-            {/* First paragraph with drop cap (always visible) */}
+            {/* First paragraph with drop cap */}
             <p className="text-[15px] leading-[1.85] text-foreground/85 drop-cap first-letter:font-medium">
               I am a Mathematics Lecturer and Researcher in the Department of Mathematics at{" "}
               <a
@@ -79,7 +86,7 @@ export function About() {
               . My academic foundation focuses on solving complex mathematical models efficiently.
             </p>
 
-            {/* Remaining paragraphs wrapped in ReadMore */}
+            {/* Remaining paragraphs in ReadMore */}
             <ReadMore lines={3} expandLabel="Read full bio" collapseLabel="Show less">
               <p className="text-[15px] leading-[1.85] text-foreground/85">
                 Since 2011, I have been committed to cultivating undergraduate excellence across fundamental and applied courses including Numerical Analysis, Calculus, and Number Theory. Beyond traditional instruction, I am an active proponent of modern instructional design frameworks and open educational resources.
@@ -120,9 +127,9 @@ export function About() {
                 Download CV
               </a>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right column: tight photo + snapshot, no extra space */}
+          {/* Right: photo + At a Glance card (starts at same y as heading) */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -130,10 +137,8 @@ export function About() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-5 flex flex-col gap-4"
           >
-            {/* Professional portrait — tight, no extra chip below */}
             <ProfessionalPortrait />
 
-            {/* Snapshot card */}
             <div className="rounded-sm border border-border bg-card p-6 shadow-sm">
               <div className="font-mono-meta text-gold mb-4">At a Glance</div>
               <dl className="space-y-3 text-sm">
@@ -150,7 +155,7 @@ export function About() {
         </div>
 
         {/* Skills */}
-        <div className="mt-20">
+        <div className="mt-16">
           <h3 className="font-serif-display text-2xl font-semibold text-foreground mb-8">
             Technical &amp; Professional Competencies
           </h3>
@@ -192,16 +197,11 @@ export function About() {
   );
 }
 
-/**
- * Professional portrait — clean, no extra space below.
- * Caption plate is inside the photo frame, not a separate chip.
- */
 function ProfessionalPortrait() {
   const [photoFailed, setPhotoFailed] = React.useState(false);
 
   return (
     <div className="relative">
-      {/* Photo frame — clean editorial style, no extra wrappers */}
       <div className="relative aspect-[4/5] overflow-hidden border border-border bg-card shadow-md">
         {!photoFailed ? (
           <img
@@ -213,11 +213,7 @@ function ProfessionalPortrait() {
         ) : (
           <BrandedFallback label="Portrait" />
         )}
-
-        {/* Gradient overlay at the bottom for caption legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
-
-        {/* Caption plate inside the photo frame — no separate chip */}
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <div className="h-px w-10 bg-gold mb-3" />
           <p className="font-serif-display text-base font-semibold text-background">
