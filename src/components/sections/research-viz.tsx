@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { LineChart, Play, Pause, RotateCcw } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 /**
  * Visualization of the inviscid Burgers' equation solution
@@ -235,14 +236,11 @@ export function ResearchVisualization() {
               <h3 className="font-serif-display text-lg font-semibold text-foreground">
                 Why Burgers&apos; Equation?
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Burgers&apos; equation is the simplest nonlinear PDE that
-                exhibits shock formation. It serves as a benchmark for
-                numerical methods — capturing its behavior accurately
-                validates that a method can handle the convective nonlinearity
-                that appears in the Navier-Stokes equations, gas dynamics, and
-                traffic flow.
-              </p>
+              <div className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <ReadMore lines={3} expandLabel="Read more" collapseLabel="Show less">
+                  Burgers&apos; equation is the simplest nonlinear PDE that exhibits shock formation. It serves as a benchmark for numerical methods — capturing its behavior accurately validates that a method can handle the convective nonlinearity that appears in the Navier-Stokes equations, gas dynamics, and traffic flow.
+                </ReadMore>
+              </div>
             </div>
 
             <div className="rounded-sm border border-gold/30 bg-gold/[0.03] p-6 shadow-sm">
@@ -250,26 +248,11 @@ export function ResearchVisualization() {
               <h3 className="mt-2 font-serif-display text-lg font-semibold text-foreground">
                 Direct Collocation, No Transformation
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Most numerical approaches transform Burgers&apos; equation via
-                Hopf-Cole into the linear heat equation. My published work in
-                the{" "}
-                <a
-                  href="https://link.springer.com/journal/40065"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="font-medium text-gold hover:underline underline-offset-2"
-                >
-                  Arabian Journal of Mathematics
-                </a>{" "}
-                instead uses{" "}
-                <span className="font-semibold text-foreground">
-                  quintic Hermite spline collocation
-                </span>{" "}
-                to solve the nonlinear form directly, preserving the
-                equation&apos;s structure and avoiding transformation-induced
-                error.
-              </p>
+              <div className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <ReadMore lines={4} expandLabel="Read more" collapseLabel="Show less">
+                  Most numerical approaches transform Burgers&apos; equation via Hopf-Cole into the linear heat equation. My published work in the <a href="https://link.springer.com/journal/40065" target="_blank" rel="noreferrer noopener" className="font-medium text-gold hover:underline underline-offset-2">Arabian Journal of Mathematics</a> instead uses <span className="font-semibold text-foreground">quintic Hermite spline collocation</span> to solve the nonlinear form directly, preserving the equation&apos;s structure and avoiding transformation-induced error.
+                </ReadMore>
+              </div>
               <a
                 href="#publications"
                 className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:underline"

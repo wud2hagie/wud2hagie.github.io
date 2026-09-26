@@ -14,6 +14,7 @@ import {
 import { PUBLICATIONS } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 type Status = "all" | "published" | "review" | "project";
 
@@ -148,9 +149,11 @@ export function Publications() {
                       {pub.authors}
                     </p>
 
-                    <p className="mt-4 text-sm leading-relaxed text-foreground/80">
-                      {pub.description}
-                    </p>
+                    <div className="mt-4 text-sm leading-relaxed text-foreground/80">
+                      <ReadMore lines={3} expandLabel="Read abstract" collapseLabel="Show less">
+                        {pub.description}
+                      </ReadMore>
+                    </div>
 
                     {pub.metrics && (
                       <div className="mt-5 flex flex-wrap gap-6 text-xs">

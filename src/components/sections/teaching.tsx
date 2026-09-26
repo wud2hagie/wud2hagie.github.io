@@ -5,6 +5,7 @@ import { BookOpen, ArrowUpRight } from "lucide-react";
 import { COURSES } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 export function Teaching() {
   return (

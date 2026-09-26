@@ -12,6 +12,7 @@ import {
 import { CERTIFICATIONS } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 const ICONS: Record<string, typeof Award> = {
   trending: TrendingUp,

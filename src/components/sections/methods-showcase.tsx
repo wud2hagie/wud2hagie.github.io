@@ -11,6 +11,7 @@ import {
 import { METHODS } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 const ICONS: Record<string, typeof Spline> = {
   spline: Spline,
@@ -68,9 +69,11 @@ export function MethodsShowcase() {
                 </h3>
 
                 {/* Description */}
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {method.description}
-                </p>
+                <div className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <ReadMore lines={3} expandLabel="Read more" collapseLabel="Show less">
+                    {method.description}
+                  </ReadMore>
+                </div>
 
                 {/* Equation */}
                 <div className="mt-5 rounded-sm border border-border bg-background/60 px-4 py-3">

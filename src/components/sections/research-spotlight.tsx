@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FlaskConical, ArrowUpRight, CheckCircle2, Clock } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Clock } from "lucide-react";
 import { RESEARCH_SPOTLIGHT } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 export function ResearchSpotlight() {
   return (
@@ -61,9 +62,11 @@ export function ResearchSpotlight() {
               )}
 
               {/* Abstract */}
-              <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-                {RESEARCH_SPOTLIGHT.abstract}
-              </p>
+              <div className="mt-5 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+                <ReadMore lines={3} expandLabel="Read full abstract" collapseLabel="Show less">
+                  {RESEARCH_SPOTLIGHT.abstract}
+                </ReadMore>
+              </div>
 
               {/* CTA */}
               <a
@@ -106,5 +109,3 @@ export function ResearchSpotlight() {
     </SectionTransition>
   );
 }
-
-void FlaskConical;

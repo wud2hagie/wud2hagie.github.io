@@ -10,11 +10,11 @@ import {
   ExternalLink,
   CheckCircle2,
   Camera,
-  ArrowUpRight,
 } from "lucide-react";
 import { ABOUT, SITE, INSTITUTIONS } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 const ICONS: Record<string, typeof Calculator> = {
   calculator: Calculator,
@@ -38,16 +38,16 @@ export function About() {
           description="A brief overview of my background, technical expertise, and approach to mathematics education."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-12">
           {/* Bio */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-7 flex flex-col gap-5"
+            className="lg:col-span-7 flex flex-col gap-4"
           >
-            {/* First paragraph with drop cap */}
+            {/* First paragraph with drop cap (always visible) */}
             <p className="text-[15px] leading-[1.85] text-foreground/85 drop-cap first-letter:font-medium">
               I am a Mathematics Lecturer and Researcher in the Department of Mathematics at{" "}
               <a
@@ -79,28 +79,30 @@ export function About() {
               . My academic foundation focuses on solving complex mathematical models efficiently.
             </p>
 
-            <p className="text-[15px] leading-[1.85] text-foreground/85">
-              Since 2011, I have been committed to cultivating undergraduate excellence across fundamental and applied courses including Numerical Analysis, Calculus, and Number Theory. Beyond traditional instruction, I am an active proponent of modern instructional design frameworks and open educational resources.
-            </p>
+            {/* Remaining paragraphs wrapped in ReadMore */}
+            <ReadMore lines={3} expandLabel="Read full bio" collapseLabel="Show less">
+              <p className="text-[15px] leading-[1.85] text-foreground/85">
+                Since 2011, I have been committed to cultivating undergraduate excellence across fundamental and applied courses including Numerical Analysis, Calculus, and Number Theory. Beyond traditional instruction, I am an active proponent of modern instructional design frameworks and open educational resources.
+              </p>
+              <p className="text-[15px] leading-[1.85] text-foreground/85 mt-4">
+                My technical expertise spans advanced mathematical software, data analysis, and professional typesetting tools such as{" "}
+                <span className="font-medium text-foreground">LaTeX</span>,{" "}
+                <span className="font-medium text-foreground">Python</span>,{" "}
+                <span className="font-medium text-foreground">MATLAB</span>, and{" "}
+                <span className="font-medium text-foreground">Wolfram Mathematica</span>. Whether developing open-access digital learning modules on{" "}
+                <a
+                  href={INSTITUTIONS.openedx.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-medium text-gold hover:underline underline-offset-2"
+                >
+                  {INSTITUTIONS.openedx.name}
+                </a>{" "}
+                or curating educational content for my channel, I strive to make mathematics intuitive and widely accessible.
+              </p>
+            </ReadMore>
 
-            <p className="text-[15px] leading-[1.85] text-foreground/85">
-              My technical expertise spans advanced mathematical software, data analysis, and professional typesetting tools such as{" "}
-              <span className="font-medium text-foreground">LaTeX</span>,{" "}
-              <span className="font-medium text-foreground">Python</span>,{" "}
-              <span className="font-medium text-foreground">MATLAB</span>, and{" "}
-              <span className="font-medium text-foreground">Wolfram Mathematica</span>. Whether developing open-access digital learning modules on{" "}
-              <a
-                href={INSTITUTIONS.openedx.url}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="font-medium text-gold hover:underline underline-offset-2"
-              >
-                {INSTITUTIONS.openedx.name}
-              </a>{" "}
-              or curating educational content for my channel, I strive to make mathematics intuitive and widely accessible.
-            </p>
-
-            <div className="mt-4 flex flex-wrap items-center gap-3">
+            <div className="mt-2 flex flex-wrap items-center gap-3">
               <a
                 href={SITE.orcid}
                 target="_blank"
@@ -120,15 +122,15 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Right column: professional single-photo layout + snapshot */}
+          {/* Right column: tight photo + snapshot, no extra space */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-5 flex flex-col gap-5"
+            className="lg:col-span-5 flex flex-col gap-4"
           >
-            {/* Single professional portrait */}
+            {/* Professional portrait — tight, no extra chip below */}
             <ProfessionalPortrait />
 
             {/* Snapshot card */}
@@ -191,24 +193,15 @@ export function About() {
 }
 
 /**
- * Professional single-photo layout — clean, editorial.
- * Uses the main portrait photo with a refined overlay and contextual caption.
+ * Professional portrait — clean, no extra space below.
+ * Caption plate is inside the photo frame, not a separate chip.
  */
 function ProfessionalPortrait() {
   const [photoFailed, setPhotoFailed] = React.useState(false);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5 }}
-      className="relative"
-    >
-      {/* Soft gold border accent (no glow) */}
-      <div className="absolute -inset-px rounded-sm border border-gold/20" />
-
-      {/* Photo frame — clean, editorial style */}
+    <div className="relative">
+      {/* Photo frame — clean editorial style, no extra wrappers */}
       <div className="relative aspect-[4/5] overflow-hidden border border-border bg-card shadow-md">
         {!photoFailed ? (
           <img
@@ -221,10 +214,10 @@ function ProfessionalPortrait() {
           <BrandedFallback label="Portrait" />
         )}
 
-        {/* Subtle gradient overlay at the bottom for caption legibility */}
+        {/* Gradient overlay at the bottom for caption legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
 
-        {/* Caption plate */}
+        {/* Caption plate inside the photo frame — no separate chip */}
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <div className="h-px w-10 bg-gold mb-3" />
           <p className="font-serif-display text-base font-semibold text-background">
@@ -241,24 +234,7 @@ function ProfessionalPortrait() {
           </a>
         </div>
       </div>
-
-      {/* Specialization chip below photo */}
-      <div className="mt-4 flex items-center justify-between gap-3 border-t border-border/60 pt-4">
-        <div>
-          <div className="font-mono-meta text-muted-foreground">Specialization</div>
-          <div className="mt-0.5 font-serif-display text-sm font-semibold text-foreground">
-            Numerical Analysis · Spline Collocation
-          </div>
-        </div>
-        <a
-          href="#research"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-gold hover:underline"
-        >
-          View research
-          <ArrowUpRight className="h-3 w-3" />
-        </a>
-      </div>
-    </motion.div>
+    </div>
   );
 }
 

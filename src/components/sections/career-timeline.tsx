@@ -12,6 +12,7 @@ import {
 import { CAREER_TIMELINE } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
+import { ReadMore } from "@/components/micro/read-more";
 
 const ICONS: Record<string, typeof GraduationCap> = {
   education: GraduationCap,
@@ -115,9 +116,11 @@ export function CareerTimeline() {
                       {item.org}
                     </p>
                   )}
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <div className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    <ReadMore lines={2} expandLabel="Read more" collapseLabel="Show less">
+                      {item.description}
+                    </ReadMore>
+                  </div>
                 </div>
               </motion.div>
             );
