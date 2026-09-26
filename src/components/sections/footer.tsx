@@ -111,9 +111,9 @@ export function Footer() {
 
           {/* Accessibility statement */}
           <p className="mt-4 text-center text-[0.65rem] text-muted-foreground">
-            <a href="#home" className="hover:text-gold underline-offset-2 hover:underline">
+            <span className="hover:text-gold cursor-default">
               Accessibility Statement
-            </a>
+            </span>
             {" · "}
             This site respects reduced-motion preferences and follows WCAG 2.1 AA guidelines.
           </p>

@@ -103,9 +103,15 @@ export function Publications() {
                         {pub.year}
                       </span>
                       {pub.doi && (
-                        <span className="font-mono-meta text-gold">
+                        <a
+                          href={`https://doi.org/${pub.doi}`}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="font-mono-meta text-gold hover:underline underline-offset-2 inline-flex items-center gap-1"
+                        >
                           DOI: {pub.doi}
-                        </span>
+                          <ExternalLink className="h-2.5 w-2.5" />
+                        </a>
                       )}
                     </div>
 

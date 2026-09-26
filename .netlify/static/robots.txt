@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Block nothing - this is a public portfolio
-Sitemap: https://wudnehtm.netlify.app/sitemap.xml
+Sitemap: https://wudnehtm-mengist.netlify.app/sitemap.xml

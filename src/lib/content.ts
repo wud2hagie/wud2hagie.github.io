@@ -11,7 +11,8 @@ export const SITE = {
   tagline:
     "Bridging rigorous numerical analysis, computational mathematics, and advanced digital learning methodologies.",
   email: "wudneh.tilahun@dbtu.edu.et",
-  phone: "+251938234343",
+  phone: "+251 938 234 343",
+  phoneTel: "+251938234343",
   orcid: "https://orcid.org/0000-0002-4335-3741",
   orcidId: "0000-0002-4335-3741",
   youtube: "https://www.youtube.com/@hybridmathhub",
@@ -19,6 +20,7 @@ export const SITE = {
   url: "https://wudnehtm-mengist.netlify.app",
   timezone: "Africa/Addis_Ababa",
   lastUpdated: "September 2026",
+  currentStatus: "Teaching Numerical Analysis · Advising undergraduate research",
 } as const;
 
 export const INSTITUTIONS = {
@@ -85,7 +87,7 @@ export const ABOUT = {
 
 export const STATS = [
   { label: "Years Teaching", value: 15, suffix: "+" },
-  { label: "Undergraduate Courses", value: 12, suffix: "" },
+  { label: "Courses Taught", value: 6, suffix: "" },
   { label: "Published Citations", value: 13, suffix: "" },
   { label: "Publication Accesses", value: 1212, suffix: "+" },
   { label: "YouTube Subscribers", value: 15, suffix: "" },

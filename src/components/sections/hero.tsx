@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  Youtube,
   FileText,
   FlaskConical,
   GraduationCap,
@@ -72,6 +71,18 @@ export function Hero() {
 
             {/* ORCID badge */}
             <OrcidBadge />
+
+            {/* Current status indicator */}
+            <div className="flex items-center gap-2.5">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
+              </span>
+              <p className="text-sm text-muted-foreground">
+                <span className="font-mono-meta text-gold mr-2">Currently</span>
+                {SITE.currentStatus}
+              </p>
+            </div>
 
             {/* Tagline */}
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground italic">
@@ -199,13 +210,6 @@ export function Hero() {
                 >
                   Explore Portfolio
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
-                <a
-                  href="#youtube"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:border-gold/40 hover:bg-gold/5"
-                >
-                  <Youtube className="h-4 w-4 text-red-600" />
-                  The Hybrid Math Hub
                 </a>
                 <a
                   href="/cv.pdf"

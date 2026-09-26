@@ -117,9 +117,12 @@ export default function RootLayout({
               worksFor: {
                 "@type": "CollegeOrUniversity",
                 name: "Debre Tabor University",
+                url: "https://dtu.edu.et/",
               },
               url: SITE_URL,
               image: `${SITE_URL}/profile-photo.jpg`,
+              email: "wudneh.tilahun@dbtu.edu.et",
+              telephone: "+251938234343",
               sameAs: [
                 "https://orcid.org/0000-0002-4335-3741",
                 "https://www.youtube.com/@hybridmathhub",
@@ -134,10 +137,12 @@ export default function RootLayout({
                 {
                   "@type": "CollegeOrUniversity",
                   name: "Bahir Dar University",
+                  url: "https://www.bdu.edu.et/",
                 },
                 {
                   "@type": "CollegeOrUniversity",
                   name: "Arba Minch University",
+                  url: "https://www.amu.edu.et/",
                 },
               ],
               knowsAbout: [
@@ -153,6 +158,59 @@ export default function RootLayout({
                 "Instructional Design",
               ],
             }),
+          }}
+        />
+        {/* Course schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Course",
+                name: "Numerical Analysis",
+                courseCode: "MATH 2011",
+                provider: {
+                  "@type": "CollegeOrUniversity",
+                  name: "Debre Tabor University",
+                  url: "https://dtu.edu.et/",
+                },
+                instructor: {
+                  "@type": "Person",
+                  name: "Wudneh Tilahun Mengist",
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Course",
+                name: "Calculus I — Differential",
+                courseCode: "MATH 1011",
+                provider: {
+                  "@type": "CollegeOrUniversity",
+                  name: "Debre Tabor University",
+                  url: "https://dtu.edu.et/",
+                },
+                instructor: {
+                  "@type": "Person",
+                  name: "Wudneh Tilahun Mengist",
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Course",
+                name: "Differential Equations",
+                courseCode: "MATH 3051",
+                provider: {
+                  "@type": "CollegeOrUniversity",
+                  name: "Debre Tabor University",
+                  url: "https://dtu.edu.et/",
+                },
+                instructor: {
+                  "@type": "Person",
+                  name: "Wudneh Tilahun Mengist",
+                },
+              },
+            ]),
           }}
         />
       </head>

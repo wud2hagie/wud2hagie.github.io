@@ -92,7 +92,7 @@ export function Contact() {
               icon={Phone}
               label="Direct Phone"
               value={SITE.phone}
-              href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+              href={`tel:${SITE.phoneTel}`}
             />
             <ContactItem
               icon={MapPin}
