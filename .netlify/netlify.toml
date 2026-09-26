@@ -12,14 +12,13 @@ package = "@netlify/plugin-nextjs"
 [plugins.inputs]
 
 [build]
-publish = "/home/z/my-project/out"
+publish = "/home/z/personal-site/out"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "bun run build:static"
 
 [build.environment]
 NODE_VERSION = "20"
-NETLIFY_STATIC_EXPORT = "1"
 
 [build.processing]
 
@@ -32,25 +31,6 @@ NETLIFY_STATIC_EXPORT = "1"
 [build.processing.js]
 
 [build.services]
-
-[[headers]]
-for = "/*.svg"
-
-[headers.values]
-Cache-Control = "public, max-age=86400"
-
-[[headers]]
-for = "/*.png"
-
-[headers.values]
-Cache-Control = "public, max-age=86400"
-
-[[headers]]
-for = "/cv.pdf"
-
-[headers.values]
-Cache-Control = "public, max-age=86400"
-Content-Disposition = "inline; filename=\"Wudneh-Tilahun-Mengist-CV.pdf\""
 
 [[headers]]
 for = "/_next/static/*"

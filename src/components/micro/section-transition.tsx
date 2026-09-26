@@ -9,10 +9,6 @@ interface SectionTransitionProps {
   className?: string;
 }
 
-/**
- * Wraps a section with a subtle fade-in on scroll — no slide, no movement.
- * Respects reduced-motion preferences automatically.
- */
 export function SectionTransition({ children, id, className = "" }: SectionTransitionProps) {
   return (
     <motion.section

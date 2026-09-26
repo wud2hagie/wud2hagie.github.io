@@ -2,18 +2,8 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Building2,
-  Send,
-  MailOpen,
-  ExternalLink,
-  CheckCircle2,
-} from "lucide-react";
-import { SITE } from "@/lib/content";
-import { SectionHeading } from "./section-heading";
+import { Send, CheckCircle2, MailOpen } from "lucide-react";
+import { PERSON } from "@/lib/content";
 import { SectionTransition } from "@/components/micro/section-transition";
 import { LocalTimeWidget } from "@/components/micro/local-time";
 import { Button } from "@/components/ui/button";
@@ -46,14 +36,11 @@ export function Contact() {
         subject: form.subject,
         message: form.message,
       });
-      const res = await fetch("/", {
+      await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString(),
       });
-      if (!res.ok && res.status !== 404) {
-        // Local dev fallback — still show success
-      }
       setStatus("success");
       toast.success("Message sent! I'll respond within 24-48 hours.");
       setForm({ name: "", email: "", subject: "", message: "" });
@@ -67,83 +54,78 @@ export function Contact() {
   return (
     <SectionTransition
       id="contact"
-      className="relative overflow-hidden border-t border-border/40 bg-gradient-to-br from-secondary/40 via-background to-secondary/20 py-20 sm:py-32"
+      className="relative py-20 sm:py-28 border-t border-border/40"
     >
-      <div className="paper-texture absolute inset-0 opacity-40" />
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <SectionHeading
-          index="13"
-          eyebrow="Contact"
-          title="Get in Touch"
-          icon={MailOpen}
-          description="Feel free to reach out for academic collaborations, research discussions, or inquiries regarding instructional content."
-        />
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col gap-2"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-neon/10 text-neon">
+              <MailOpen className="h-4 w-4" />
+            </span>
+            <span className="font-mono-meta text-neon">08 — Contact</span>
+          </div>
+          <h2 className="font-serif-display text-4xl sm:text-5xl font-bold tracking-tight gradient-text">
+            Get in Touch
+          </h2>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+            For collaborations, speaking, or just to say hello — I'd love to hear from you.
+          </p>
+        </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-5">
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Contact info */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <ContactItem
-              icon={Mail}
-              label="Institutional Email"
-              value={SITE.email}
-              href={`mailto:${SITE.email}`}
-            />
-            <ContactItem
-              icon={Phone}
-              label="Direct Phone"
-              value={SITE.phone}
-              href={`tel:${SITE.phoneTel}`}
-            />
-            <ContactItem
-              icon={MapPin}
-              label="Location"
-              value={SITE.location}
-            />
-            <ContactItem
-              icon={Building2}
-              label="Affiliation"
-              value={SITE.affiliation}
-            />
+            <a
+              href={`mailto:${PERSON.email}`}
+              className="glass-card glass-card-hover rounded-xl p-5 flex items-center gap-4 group"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-neon/10 text-neon">
+                <Send className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="font-mono-meta text-[0.55rem] text-muted-foreground">Email</p>
+                <p className="text-sm font-semibold text-foreground break-all">
+                  {PERSON.email}
+                </p>
+              </div>
+            </a>
 
-            <div className="mt-2">
-              <LocalTimeWidget />
+            <div className="glass-card rounded-xl p-5">
+              <p className="font-mono-meta text-[0.55rem] text-muted-foreground">Location</p>
+              <p className="text-sm font-semibold text-foreground mt-1">
+                {PERSON.location}
+              </p>
+              <div className="mt-3">
+                <LocalTimeWidget />
+              </div>
             </div>
 
             <a
-              href={SITE.orcid}
+              href={PERSON.academicPortfolio}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-2 inline-flex items-center justify-between gap-2 border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition-all hover:border-gold/40 hover:bg-gold/5"
+              className="glass-card glass-card-hover rounded-xl p-5 flex items-center justify-between group"
             >
-              <span className="inline-flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-gold/10 text-gold">
-                  <ExternalLink className="h-4 w-4" />
-                </span>
-                View ORCID Profile
-              </span>
-              <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
-            </a>
-
-            <a
-              href={SITE.youtube}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="inline-flex items-center justify-between gap-2 border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition-all hover:border-gold/40 hover:bg-gold/5"
-            >
-              <span className="inline-flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-red-600/10 text-red-600">
-                  <ExternalLink className="h-4 w-4" />
-                </span>
-                The Hybrid Math Hub (YouTube)
-              </span>
-              <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
+              <div>
+                <p className="font-mono-meta text-[0.55rem] text-muted-foreground">Academic Portfolio</p>
+                <p className="text-sm font-semibold text-foreground mt-1">
+                  Full CV & publications
+                </p>
+              </div>
+              <Send className="h-4 w-4 text-muted-foreground group-hover:text-neon transition-colors" />
             </a>
           </div>
 
-          {/* Contact form */}
+          {/* Form */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="lg:col-span-3"
@@ -167,16 +149,16 @@ export function Contact() {
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
-              className="rounded-sm border border-border bg-card p-6 shadow-sm sm:p-8"
+              className="glass-card rounded-xl p-6 sm:p-8 flex flex-col gap-4"
             >
               <input type="hidden" name="form-name" value="contact" />
               <p className="hidden">
                 <label>
-                  Don&apos;t fill this out: <input name="bot-field" />
+                  Don't fill this out: <input name="bot-field" />
                 </label>
               </p>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="name">Your Name</Label>
                   <Input
@@ -201,7 +183,7 @@ export function Contact() {
                   />
                 </div>
               </div>
-              <div className="mt-4 space-y-1.5">
+              <div className="space-y-1.5">
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
@@ -209,10 +191,10 @@ export function Contact() {
                   required
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  placeholder="Collaboration, supervision, or inquiry"
+                  placeholder="What's this about?"
                 />
               </div>
-              <div className="mt-4 space-y-1.5">
+              <div className="space-y-1.5">
                 <Label htmlFor="message">Message</Label>
                 <Textarea
                   id="message"
@@ -221,18 +203,18 @@ export function Contact() {
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Tell me a bit about your inquiry, timeline, and how I can help."
+                  placeholder="Tell me a bit about what you're working on or what you need."
                 />
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center justify-between gap-3 pt-2">
                 <p className="text-xs text-muted-foreground">
                   I typically respond within 24-48 hours.
                 </p>
                 <Button
                   type="submit"
                   disabled={status === "submitting" || status === "success"}
-                  className="min-w-[140px]"
+                  className="min-w-[140px] bg-neon text-background hover:bg-neon/90"
                 >
                   {status === "submitting" ? (
                     "Sending…"
@@ -254,43 +236,5 @@ export function Contact() {
         </div>
       </div>
     </SectionTransition>
-  );
-}
-
-function ContactItem({
-  icon: Icon,
-  label,
-  value,
-  href,
-}: {
-  icon: typeof Mail;
-  label: string;
-  value: string;
-  href?: string;
-}) {
-  const Wrapper = href ? "a" : "div";
-  const wrapperProps = href
-    ? { href, ...(href.startsWith("mailto") || href.startsWith("tel") ? {} : { target: "_blank", rel: "noreferrer noopener" }) }
-    : {};
-
-  return (
-    <Wrapper
-      {...wrapperProps}
-      className={`flex items-center gap-3 border border-border bg-card px-5 py-4 transition-all ${
-        href ? "hover:border-gold/40 hover:bg-gold/5" : ""
-      }`}
-    >
-      <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold/10 text-gold">
-        <Icon className="h-5 w-5" />
-      </span>
-      <div>
-        <p className="font-mono-meta text-[0.55rem] text-muted-foreground">
-          {label}
-        </p>
-        <p className="text-sm font-semibold text-foreground break-words">
-          {value}
-        </p>
-      </div>
-    </Wrapper>
   );
 }

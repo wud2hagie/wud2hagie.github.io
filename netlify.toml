@@ -4,26 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NETLIFY_STATIC_EXPORT = "1"
 
-# Cache static assets aggressively
 [[headers]]
   for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
-
-[[headers]]
-  for = "/*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
-
-[[headers]]
-  for = "/cv.pdf"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
-    Content-Disposition = 'inline; filename="Wudneh-Tilahun-Mengist-CV.pdf"'

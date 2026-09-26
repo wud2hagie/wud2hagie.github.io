@@ -3,9 +3,7 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { NAV_LINKS } from "@/lib/content";
+import { NAV_LINKS, PERSON } from "@/lib/content";
 
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -26,18 +24,18 @@ export function Navbar() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/85 backdrop-blur-md border-b border-border/40"
+            ? "glass-card border-b border-border/40"
             : "bg-transparent border-b border-transparent"
         }`}
       >
-        <nav className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="flex h-20 items-center justify-between">
-            <a href="#home" className="flex items-center" aria-label="Home">
-              <Logo size={36} />
+        <nav className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <a href="#home" className="font-serif-display text-lg font-semibold gradient-text">
+              WTM<span className="text-neon">.</span>
             </a>
 
             {/* Desktop nav */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-6">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
@@ -45,35 +43,25 @@ export function Navbar() {
                   className="relative text-sm font-medium text-foreground/70 hover:text-foreground transition-colors group"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-neon transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
-              <div className="ml-2 h-6 w-px bg-border" />
-              <ThemeToggle />
             </div>
 
             {/* Mobile toggle */}
-            <div className="flex lg:hidden items-center gap-2">
-              <ThemeToggle />
-              <button
-                type="button"
-                aria-label="Toggle menu"
-                aria-expanded={mobileOpen}
-                onClick={() => setMobileOpen((v) => !v)}
-                className="h-10 w-10 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center hover:bg-gold/5 hover:border-gold/40 transition-colors"
-              >
-                {mobileOpen ? (
-                  <X className="h-[18px] w-[18px]" />
-                ) : (
-                  <Menu className="h-[18px] w-[18px]" />
-                )}
-              </button>
-            </div>
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+              className="md:hidden h-10 w-10 rounded-lg border border-border glass-card flex items-center justify-center"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </nav>
       </motion.header>
 
-      {/* Mobile dropdown */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -81,15 +69,15 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-20 left-0 right-0 z-40 lg:hidden bg-background/95 backdrop-blur-md border-b border-border/40"
+            className="fixed top-16 left-0 right-0 z-40 md:hidden glass-card border-b border-border/40"
           >
-            <nav className="mx-auto max-w-7xl px-6 py-3 flex flex-col">
+            <nav className="px-6 py-3 flex flex-col">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-3 py-3 text-base font-medium text-foreground/85 hover:text-gold transition-colors border-b border-border/30 last:border-0"
+                  className="px-3 py-3 text-base font-medium text-foreground/85 hover:text-neon transition-colors border-b border-border/30 last:border-0"
                 >
                   {link.label}
                 </a>
