@@ -6,7 +6,7 @@ export const SITE = {
   shortName: "Wudneh",
   title: "Mathematics Lecturer & Researcher",
   affiliation: "Debre Tabor University",
-  affiliationUrl: "https://dbtu.edu.et/",
+  affiliationUrl: "https://dtu.edu.et/",
   location: "Debre Tabor, Amhara, Ethiopia",
   tagline:
     "Bridging rigorous numerical analysis, computational mathematics, and advanced digital learning methodologies.",
@@ -22,7 +22,7 @@ export const SITE = {
 } as const;
 
 export const INSTITUTIONS = {
-  dtu: { name: "Debre Tabor University", url: "https://dbtu.edu.et/" },
+  dtu: { name: "Debre Tabor University", url: "https://dtu.edu.et/" },
   bdu: { name: "Bahir Dar University", url: "https://www.bdu.edu.et/" },
   amu: { name: "Arba Minch University", url: "https://www.amu.edu.et/" },
   springer: { name: "Springer Nature", url: "https://www.springer.com/" },
@@ -115,7 +115,7 @@ export const CAREER_TIMELINE = [
     year: "2011",
     title: "Appointed Lecturer in Mathematics",
     org: "Debre Tabor University",
-    orgUrl: "https://dbtu.edu.et/",
+    orgUrl: "https://dtu.edu.et/",
     description:
       "Joined the Department of Mathematics at DTU, beginning what is now a fifteen-year commitment to undergraduate teaching across Numerical Analysis, Calculus, Number Theory, Linear Algebra, and Differential Equations.",
     category: "career",
@@ -160,7 +160,7 @@ export const CAREER_TIMELINE = [
     year: "2024",
     title: "IDLT Trainer — Faculty Development",
     org: "Debre Tabor University",
-    orgUrl: "https://dbtu.edu.et/",
+    orgUrl: "https://dtu.edu.et/",
     description:
       "Served as a trainer in the Interactive Digital Learning & Teaching program, mentoring faculty on modern digital learning frameworks and Open edX integration across the university.",
     category: "milestone",
@@ -386,7 +386,7 @@ export const CERTIFICATIONS = [
   {
     title: "Interactive Digital Learning & Teaching (IDLT)",
     issuer: "Debre Tabor University",
-    issuerUrl: "https://dbtu.edu.et/",
+    issuerUrl: "https://dtu.edu.et/",
     description:
       "Served as an IDLT Trainer, facilitating courses and mentoring faculty on modern digital learning frameworks and Open edX integration.",
     icon: "presentation",
@@ -402,7 +402,7 @@ export const CERTIFICATIONS = [
   {
     title: "English Language Improvement Program (ELIP)",
     issuer: "DTU Academic Development",
-    issuerUrl: "https://dbtu.edu.et/",
+    issuerUrl: "https://dtu.edu.et/",
     description:
       "Completed specialized professional development focused on advanced academic communication, instructional delivery, and pedagogy enhancement.",
     icon: "language",
@@ -413,7 +413,7 @@ export const EXPERIENCE = [
   {
     role: "Lecturer in Mathematics",
     organization: "Debre Tabor University",
-    organizationUrl: "https://dbtu.edu.et/",
+    organizationUrl: "https://dtu.edu.et/",
     focus: "Undergraduate Teaching & Research (2011–Present)",
     period: "2011 — Present",
   },
