@@ -1,7 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IdCard, GraduationCap, Briefcase, FileDown } from "lucide-react";
+import {
+  IdCard,
+  GraduationCap,
+  Briefcase,
+  FileDown,
+  ExternalLink,
+} from "lucide-react";
 import { EDUCATION, EXPERIENCE } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
@@ -32,19 +38,17 @@ export function CV() {
             </h3>
 
             <div className="relative">
-              {/* Vertical line */}
               <div className="absolute left-[18px] top-2 bottom-2 w-px bg-gradient-to-b from-gold/60 via-border to-transparent" />
 
               {EDUCATION.map((edu, i) => (
                 <motion.div
                   key={edu.degree}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="relative pl-12 pb-8 last:pb-0"
                 >
-                  {/* Node */}
                   <div className="absolute left-0 top-2 flex h-9 w-9 items-center justify-center rounded-sm border border-gold/40 bg-card text-gold text-xs font-mono font-semibold">
                     {edu.period.split(" ")[2]?.slice(2) || "·"}
                   </div>
@@ -54,7 +58,19 @@ export function CV() {
                     <h4 className="mt-2 font-serif-display text-lg font-semibold text-foreground">
                       {edu.degree}
                     </h4>
-                    <p className="mt-1 text-sm text-gold">{edu.institution}</p>
+                    {edu.institutionUrl ? (
+                      <a
+                        href={edu.institutionUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="mt-1 inline-flex items-center gap-1.5 text-sm text-gold hover:underline underline-offset-2"
+                      >
+                        {edu.institution}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ) : (
+                      <p className="mt-1 text-sm text-gold">{edu.institution}</p>
+                    )}
                     <p className="mt-2 text-xs text-muted-foreground">
                       <span className="font-semibold text-foreground/70">Specialization:</span>{" "}
                       {edu.specialization}
@@ -80,10 +96,10 @@ export function CV() {
               {EXPERIENCE.map((exp, i) => (
                 <motion.div
                   key={exp.role}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="relative pl-12 pb-8 last:pb-0"
                 >
                   <div className="absolute left-0 top-2 flex h-9 w-9 items-center justify-center rounded-sm border border-gold/40 bg-card text-gold text-xs font-mono font-semibold">
@@ -95,7 +111,19 @@ export function CV() {
                     <h4 className="mt-2 font-serif-display text-lg font-semibold text-foreground">
                       {exp.role}
                     </h4>
-                    <p className="mt-1 text-sm text-gold">{exp.organization}</p>
+                    {exp.organizationUrl ? (
+                      <a
+                        href={exp.organizationUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="mt-1 inline-flex items-center gap-1.5 text-sm text-gold hover:underline underline-offset-2"
+                      >
+                        {exp.organization}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ) : (
+                      <p className="mt-1 text-sm text-gold">{exp.organization}</p>
+                    )}
                     <p className="mt-2 text-xs text-muted-foreground">{exp.focus}</p>
                   </div>
                 </motion.div>
@@ -106,10 +134,10 @@ export function CV() {
 
         {/* Download CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="mt-12 flex flex-col items-center justify-center gap-3 rounded-sm border border-border bg-gradient-to-br from-secondary/40 via-card to-secondary/20 p-8 text-center"
         >
           <p className="font-serif-display text-lg font-medium text-foreground">

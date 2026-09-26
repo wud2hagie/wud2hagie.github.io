@@ -10,16 +10,17 @@ interface SectionTransitionProps {
 }
 
 /**
- * Wraps a section with scroll-triggered fade-slide-in animation.
+ * Wraps a section with a subtle fade-in on scroll — no slide, no movement.
+ * Respects reduced-motion preferences automatically.
  */
 export function SectionTransition({ children, id, className = "" }: SectionTransitionProps) {
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={className}
     >
       {children}

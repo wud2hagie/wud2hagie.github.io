@@ -124,7 +124,19 @@ export function Publications() {
                     </div>
 
                     <p className="mt-2 text-sm font-medium text-gold">
-                      {pub.venue}
+                      {pub.venueUrl ? (
+                        <a
+                          href={pub.venueUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="inline-flex items-start gap-1 hover:underline underline-offset-2"
+                        >
+                          {pub.venue}
+                          <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
+                        </a>
+                      ) : (
+                        pub.venue
+                      )}
                     </p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
                       {pub.authors}

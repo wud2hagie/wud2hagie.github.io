@@ -10,8 +10,9 @@ import {
   ExternalLink,
   CheckCircle2,
   Camera,
+  ArrowUpRight,
 } from "lucide-react";
-import { ABOUT, SITE } from "@/lib/content";
+import { ABOUT, SITE, INSTITUTIONS } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
 
@@ -40,22 +41,64 @@ export function About() {
         <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Bio */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.5 }}
             className="lg:col-span-7 flex flex-col gap-5"
           >
-            {ABOUT.paragraphs.map((p, i) => (
-              <p
-                key={i}
-                className={`text-[15px] leading-[1.85] text-foreground/85 ${
-                  i === 0 ? "drop-cap first-letter:font-medium" : ""
-                }`}
+            {/* First paragraph with drop cap */}
+            <p className="text-[15px] leading-[1.85] text-foreground/85 drop-cap first-letter:font-medium">
+              I am a Mathematics Lecturer and Researcher in the Department of Mathematics at{" "}
+              <a
+                href={INSTITUTIONS.dtu.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-medium text-gold hover:underline underline-offset-2"
               >
-                {p}
-              </p>
-            ))}
+                {INSTITUTIONS.dtu.name}
+              </a>
+              , Ethiopia. I hold a Master of Science in Mathematics specializing in Numerical Analysis from{" "}
+              <a
+                href={INSTITUTIONS.bdu.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-medium text-gold hover:underline underline-offset-2"
+              >
+                {INSTITUTIONS.bdu.name}
+              </a>{" "}
+              and a Bachelor of Science in Applied Mathematics from{" "}
+              <a
+                href={INSTITUTIONS.amu.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-medium text-gold hover:underline underline-offset-2"
+              >
+                {INSTITUTIONS.amu.name}
+              </a>
+              . My academic foundation focuses on solving complex mathematical models efficiently.
+            </p>
+
+            <p className="text-[15px] leading-[1.85] text-foreground/85">
+              Since 2011, I have been committed to cultivating undergraduate excellence across fundamental and applied courses including Numerical Analysis, Calculus, and Number Theory. Beyond traditional instruction, I am an active proponent of modern instructional design frameworks and open educational resources.
+            </p>
+
+            <p className="text-[15px] leading-[1.85] text-foreground/85">
+              My technical expertise spans advanced mathematical software, data analysis, and professional typesetting tools such as{" "}
+              <span className="font-medium text-foreground">LaTeX</span>,{" "}
+              <span className="font-medium text-foreground">Python</span>,{" "}
+              <span className="font-medium text-foreground">MATLAB</span>, and{" "}
+              <span className="font-medium text-foreground">Wolfram Mathematica</span>. Whether developing open-access digital learning modules on{" "}
+              <a
+                href={INSTITUTIONS.openedx.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-medium text-gold hover:underline underline-offset-2"
+              >
+                {INSTITUTIONS.openedx.name}
+              </a>{" "}
+              or curating educational content for my channel, I strive to make mathematics intuitive and widely accessible.
+            </p>
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
@@ -77,16 +120,16 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Right column: photo collage + snapshot */}
+          {/* Right column: professional single-photo layout + snapshot */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col gap-4"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="lg:col-span-5 flex flex-col gap-5"
           >
-            {/* Photo collage */}
-            <PhotoCollage />
+            {/* Single professional portrait */}
+            <ProfessionalPortrait />
 
             {/* Snapshot card */}
             <div className="rounded-sm border border-border bg-card p-6 shadow-sm">
@@ -115,10 +158,10 @@ export function About() {
               return (
                 <motion.div
                   key={skill.category}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
                   className="group relative overflow-hidden rounded-sm border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-gold/40"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold/10 text-gold">
@@ -147,84 +190,84 @@ export function About() {
   );
 }
 
-function PhotoCollage() {
-  const [mainFailed, setMainFailed] = React.useState(false);
-  const [secondFailed, setSecondFailed] = React.useState(false);
+/**
+ * Professional single-photo layout — clean, editorial.
+ * Uses the main portrait photo with a refined overlay and contextual caption.
+ */
+function ProfessionalPortrait() {
+  const [photoFailed, setPhotoFailed] = React.useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5 }}
       className="relative"
     >
-      <div className="absolute -inset-3 rounded-sm bg-gold/10 blur-2xl" />
+      {/* Soft gold border accent (no glow) */}
+      <div className="absolute -inset-px rounded-sm border border-gold/20" />
 
-      <div className="relative grid grid-cols-5 gap-3">
-        {/* Main photo (tall) */}
-        <div className="col-span-3 aspect-[3/4] overflow-hidden border border-border/80 bg-card shadow-lg">
-          {!mainFailed ? (
-            <img
-              src="/myphoto.jpg"
-              alt={`${SITE.name} — Office portrait`}
-              className="h-full w-full object-cover"
-              onError={() => setMainFailed(true)}
-            />
-          ) : (
-            <BrandedPhoto label="Office Portrait" />
-          )}
+      {/* Photo frame — clean, editorial style */}
+      <div className="relative aspect-[4/5] overflow-hidden border border-border bg-card shadow-md">
+        {!photoFailed ? (
+          <img
+            src="/myphoto.jpg"
+            alt={`${SITE.name} — Professional portrait at Debre Tabor University`}
+            className="h-full w-full object-cover"
+            onError={() => setPhotoFailed(true)}
+          />
+        ) : (
+          <BrandedFallback label="Portrait" />
+        )}
+
+        {/* Subtle gradient overlay at the bottom for caption legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
+
+        {/* Caption plate */}
+        <div className="absolute bottom-0 left-0 right-0 p-5">
+          <div className="h-px w-10 bg-gold mb-3" />
+          <p className="font-serif-display text-base font-semibold text-background">
+            Department of Mathematics
+          </p>
+          <a
+            href={INSTITUTIONS.dtu.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-1.5 mt-1 text-xs text-background/80 hover:text-gold transition-colors"
+          >
+            <ExternalLink className="h-3 w-3" />
+            {INSTITUTIONS.dtu.name}
+          </a>
         </div>
+      </div>
 
-        {/* Secondary photo (square) + caption */}
-        <div className="col-span-2 flex flex-col gap-3">
-          <div className="aspect-square overflow-hidden border border-border/80 bg-card shadow-lg">
-            {!secondFailed ? (
-              <img
-                src="/my2photo.jpg"
-                alt={`${SITE.name} — Teaching context`}
-                className="h-full w-full object-cover"
-                onError={() => setSecondFailed(true)}
-              />
-            ) : (
-              <BrandedPhoto label="Teaching Context" small />
-            )}
-          </div>
-
-          {/* Caption card */}
-          <div className="flex-1 rounded-sm border border-border bg-gradient-to-br from-secondary/60 via-card to-secondary/40 p-4">
-            <div className="flex items-center gap-2 text-gold">
-              <Camera className="h-4 w-4" />
-              <span className="font-mono-meta text-[0.55rem]">
-                Debre Tabor University
-              </span>
-            </div>
-            <p className="mt-2 font-serif-display text-sm font-semibold leading-snug text-foreground">
-              Mathematics Department
-            </p>
-            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-              Where numerical methods meet undergraduate education — every
-              lesson a building block for Ethiopia&apos;s future scientists.
-            </p>
+      {/* Specialization chip below photo */}
+      <div className="mt-4 flex items-center justify-between gap-3 border-t border-border/60 pt-4">
+        <div>
+          <div className="font-mono-meta text-muted-foreground">Specialization</div>
+          <div className="mt-0.5 font-serif-display text-sm font-semibold text-foreground">
+            Numerical Analysis · Spline Collocation
           </div>
         </div>
+        <a
+          href="#research"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-gold hover:underline"
+        >
+          View research
+          <ArrowUpRight className="h-3 w-3" />
+        </a>
       </div>
     </motion.div>
   );
 }
 
-function BrandedPhoto({
-  label,
-  small = false,
-}: {
-  label: string;
-  small?: boolean;
-}) {
+function BrandedFallback({ label }: { label: string }) {
   return (
-    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-gold/30 via-gold/10 to-secondary p-4 text-center">
+    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-gold/25 via-gold/8 to-secondary p-6 text-center">
       <svg
         viewBox="0 0 100 100"
-        className="absolute inset-0 h-full w-full opacity-20"
+        className="absolute inset-0 h-full w-full opacity-15"
         preserveAspectRatio="none"
       >
         <path
@@ -236,13 +279,8 @@ function BrandedPhoto({
         />
       </svg>
       <div className="relative">
-        <div
-          className={`font-serif-display font-bold text-gold ${
-            small ? "text-4xl" : "text-6xl"
-          }`}
-        >
-          WTM
-        </div>
+        <Camera className="h-8 w-8 mx-auto text-gold" />
+        <div className="mt-3 font-serif-display text-3xl font-bold text-gold">WTM</div>
         <p className="mt-2 font-mono-meta text-muted-foreground">{label}</p>
       </div>
     </div>
@@ -253,7 +291,7 @@ function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-border/40 pb-2 last:border-0 last:pb-0">
       <dt className="text-muted-foreground">{label}</dt>
-      <dd className="font-medium text-foreground">{value}</dd>
+      <dd className="font-medium text-foreground text-right">{value}</dd>
     </div>
   );
 }

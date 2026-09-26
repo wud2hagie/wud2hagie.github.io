@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, TrendingUp, Presentation, BadgeCheck, Languages } from "lucide-react";
+import {
+  Award,
+  TrendingUp,
+  Presentation,
+  BadgeCheck,
+  Languages,
+  ExternalLink,
+} from "lucide-react";
 import { CERTIFICATIONS } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
@@ -34,10 +41,10 @@ export function Certifications() {
             return (
               <motion.article
                 key={cert.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="group relative flex flex-col overflow-hidden border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-gold/40"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold/10 text-gold">
@@ -46,9 +53,19 @@ export function Certifications() {
                 <h3 className="mt-4 font-serif-display text-sm font-semibold leading-tight text-foreground">
                   {cert.title}
                 </h3>
-                <p className="mt-1 text-xs font-medium text-gold">
-                  {cert.issuer}
-                </p>
+                {cert.issuerUrl ? (
+                  <a
+                    href={cert.issuerUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-1 inline-flex items-start gap-1 text-xs font-medium text-gold hover:underline underline-offset-2"
+                  >
+                    {cert.issuer}
+                    <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
+                  </a>
+                ) : (
+                  <p className="mt-1 text-xs font-medium text-gold">{cert.issuer}</p>
+                )}
                 <p className="mt-3 flex-1 text-xs leading-relaxed text-muted-foreground">
                   {cert.description}
                 </p>

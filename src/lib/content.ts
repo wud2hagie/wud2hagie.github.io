@@ -6,10 +6,11 @@ export const SITE = {
   shortName: "Wudneh",
   title: "Mathematics Lecturer & Researcher",
   affiliation: "Debre Tabor University",
+  affiliationUrl: "https://dbtu.edu.et/",
   location: "Debre Tabor, Amhara, Ethiopia",
   tagline:
     "Bridging rigorous numerical analysis, computational mathematics, and advanced digital learning methodologies.",
-  email: "wudneh.tilahun@ethernet.edu.et",
+  email: "wudneh.tilahun@dbtu.edu.et",
   phone: "+251938234343",
   orcid: "https://orcid.org/0000-0002-4335-3741",
   orcidId: "0000-0002-4335-3741",
@@ -20,11 +21,37 @@ export const SITE = {
   lastUpdated: "September 2026",
 } as const;
 
+export const INSTITUTIONS = {
+  dtu: { name: "Debre Tabor University", url: "https://dbtu.edu.et/" },
+  bdu: { name: "Bahir Dar University", url: "https://www.bdu.edu.et/" },
+  amu: { name: "Arba Minch University", url: "https://www.amu.edu.et/" },
+  springer: { name: "Springer Nature", url: "https://www.springer.com/" },
+  arabianJM: {
+    name: "Arabian Journal of Mathematics",
+    url: "https://link.springer.com/journal/40065",
+  },
+  jist: {
+    name: "Journal of Interdisciplinary Science and Technology",
+    url: "https://www.dtujist.com/",
+  },
+  nebe: {
+    name: "National Election Board of Ethiopia",
+    url: "https://www.nebe.gov.et/",
+  },
+  esx: {
+    name: "Ethiopian Securities Exchange",
+    url: "https://www.esx.com.et/",
+  },
+  overleaf: { name: "Overleaf", url: "https://www.overleaf.com/" },
+  openedx: { name: "Open edX", url: "https://openedx.org/" },
+  orcid: { name: "ORCID", url: "https://orcid.org/" },
+} as const;
+
 export const ABOUT = {
   heading: "Professional Profile",
   paragraphs: [
-    "I am a dedicated Mathematics Lecturer and Researcher based in the Department of Mathematics at Debre Tabor University, Ethiopia. Holding a Master of Science degree in Mathematics specializing in Numerical Analysis from Bahir Dar University and a Bachelor of Science in Applied Mathematics from Arba Minch University, my academic foundation focuses on solving complex mathematical models efficiently.",
-    "Since 2011, I have been deeply committed to cultivating undergraduate excellence across fundamental and applied courses including Numerical Analysis, Calculus, and Number Theory. Beyond traditional instruction, I am an active proponent of modern instructional design frameworks and open educational resources.",
+    "I am a Mathematics Lecturer and Researcher in the Department of Mathematics at Debre Tabor University, Ethiopia. I hold a Master of Science in Mathematics specializing in Numerical Analysis from Bahir Dar University and a Bachelor of Science in Applied Mathematics from Arba Minch University. My academic foundation focuses on solving complex mathematical models efficiently.",
+    "Since 2011, I have been committed to cultivating undergraduate excellence across fundamental and applied courses including Numerical Analysis, Calculus, and Number Theory. Beyond traditional instruction, I am an active proponent of modern instructional design frameworks and open educational resources.",
     "My technical expertise spans advanced mathematical software, data analysis, and professional typesetting tools such as LaTeX, Python, MATLAB, and Wolfram Mathematica. Whether developing open-access digital learning modules on Open edX or curating educational content for my channel, I strive to make mathematics intuitive and widely accessible.",
   ],
   skills: [
@@ -70,6 +97,7 @@ export const CAREER_TIMELINE = [
     year: "2003",
     title: "BSc in Applied Mathematics",
     org: "Arba Minch University",
+    orgUrl: "https://www.amu.edu.et/",
     description:
       "Began undergraduate studies in Applied Mathematics, building the foundational understanding of mathematical modeling, computation, and analysis that would shape a research career.",
     category: "education",
@@ -78,6 +106,7 @@ export const CAREER_TIMELINE = [
     year: "2008",
     title: "MSc Specialization in Numerical Analysis",
     org: "Bahir Dar University",
+    orgUrl: "https://www.bdu.edu.et/",
     description:
       "Pursued postgraduate study specializing in Numerical Analysis — focusing on spline-based collocation methods for differential equations with sharp gradients.",
     category: "education",
@@ -86,6 +115,7 @@ export const CAREER_TIMELINE = [
     year: "2011",
     title: "Appointed Lecturer in Mathematics",
     org: "Debre Tabor University",
+    orgUrl: "https://dbtu.edu.et/",
     description:
       "Joined the Department of Mathematics at DTU, beginning what is now a fifteen-year commitment to undergraduate teaching across Numerical Analysis, Calculus, Number Theory, Linear Algebra, and Differential Equations.",
     category: "career",
@@ -94,6 +124,7 @@ export const CAREER_TIMELINE = [
     year: "2019",
     title: "Quintic Hermite Splines for Burgers' Equation",
     org: "Arabian Journal of Mathematics — Springer Nature",
+    orgUrl: "https://link.springer.com/journal/40065",
     description:
       "Co-authored peer-reviewed publication introducing an innovative collocation scheme that directly solves the non-linear Burgers' equation using quintic Hermite splines, bypassing the conventional Hopf-Cole transformation.",
     category: "publication",
@@ -102,6 +133,7 @@ export const CAREER_TIMELINE = [
     year: "2020",
     title: "Founded The Hybrid Math Hub",
     org: "YouTube Educational Channel",
+    orgUrl: "https://www.youtube.com/@hybridmathhub",
     description:
       "Launched an educational channel dedicated to making complex mathematical concepts accessible through structured video tutorials — currently featuring courses on blended learning, multimedia design principles, and UDL-based course redesign.",
     category: "milestone",
@@ -110,6 +142,7 @@ export const CAREER_TIMELINE = [
     year: "2021",
     title: "Certified Master & Field Trainer",
     org: "National Election Board of Ethiopia",
+    orgUrl: "https://www.nebe.gov.et/",
     description:
       "Certified and deployed across regional training cycles as an official Master and Field Trainer for electoral operations — a five-year commitment to operational training and leadership.",
     category: "certification",
@@ -118,6 +151,7 @@ export const CAREER_TIMELINE = [
     year: "2023",
     title: "Layout Editor — JIST Volume 1, Issue 1",
     org: "Journal of Interdisciplinary Science and Technology",
+    orgUrl: "https://www.dtujist.com/",
     description:
       "Designed the visual brand identity, cover specifications, and professional article layout templates in LaTeX for the inaugural volume of DTU's flagship interdisciplinary journal.",
     category: "career",
@@ -126,6 +160,7 @@ export const CAREER_TIMELINE = [
     year: "2024",
     title: "IDLT Trainer — Faculty Development",
     org: "Debre Tabor University",
+    orgUrl: "https://dbtu.edu.et/",
     description:
       "Served as a trainer in the Interactive Digital Learning & Teaching program, mentoring faculty on modern digital learning frameworks and Open edX integration across the university.",
     category: "milestone",
@@ -134,6 +169,7 @@ export const CAREER_TIMELINE = [
     year: "2025",
     title: "Adaptive B-Spline Collocation Framework — Under Review",
     org: "Journal of Interdisciplinary Science and Technology (JIST)",
+    orgUrl: "https://www.dtujist.com/",
     description:
       "Submitted a manuscript proposing an adaptive B-spline collocation framework that dynamically refines mesh density near boundary layers to capture sharp gradients in singularly perturbed BVPs with high precision.",
     category: "publication",
@@ -194,6 +230,7 @@ export const RESEARCH_SPOTLIGHT = {
     "An Adaptive B-Spline Collocation Framework for Singularly Perturbed Boundary Value Problems with Boundary Layers",
   status: "Under Review",
   venue: "Journal of Interdisciplinary Science and Technology (JIST)",
+  venueUrl: "https://www.dtujist.com/",
   submitted: "2025",
   abstract:
     "This manuscript proposes an adaptive B-spline collocation framework that dynamically refines mesh density near boundary layers to capture sharp gradients in singularly perturbed boundary value problems (SPBVPs) with high precision. Unlike uniform mesh approaches, the proposed method uses a posteriori error estimators to guide local refinement, achieving comparable accuracy with significantly fewer grid points.",
@@ -262,6 +299,7 @@ export const PUBLICATIONS = [
     title:
       "An exploration of quintic Hermite splines to solve Burgers' equation",
     venue: "Arabian Journal of Mathematics (Springer Nature)",
+    venueUrl: "https://link.springer.com/journal/40065",
     year: 2019,
     status: "published",
     authors: "W. T. Mengist et al.",
@@ -279,6 +317,7 @@ export const PUBLICATIONS = [
     title:
       "An Adaptive B-Spline Collocation Framework for Singularly Perturbed Boundary Value Problems with Boundary Layers",
     venue: "Journal of Interdisciplinary Science and Technology (JIST)",
+    venueUrl: "https://www.dtujist.com/",
     year: 2025,
     status: "review",
     authors: "W. T. Mengist",
@@ -298,6 +337,7 @@ export const PUBLICATIONS = [
     title:
       "Teacher Capacity Building Framework for Mathematics Educators",
     venue: "Regional Training Initiative",
+    venueUrl: null,
     year: 2024,
     status: "project",
     authors: "W. T. Mengist",
@@ -338,6 +378,7 @@ export const CERTIFICATIONS = [
   {
     title: "Financial Services & Capital Markets",
     issuer: "Ethiopian Securities Exchange (ESX) Digital Academy",
+    issuerUrl: "https://www.esx.com.et/",
     description:
       "Completed professional training modules covering modern financial ecosystems, market operations, and investment structures.",
     icon: "trending",
@@ -345,6 +386,7 @@ export const CERTIFICATIONS = [
   {
     title: "Interactive Digital Learning & Teaching (IDLT)",
     issuer: "Debre Tabor University",
+    issuerUrl: "https://dbtu.edu.et/",
     description:
       "Served as an IDLT Trainer, facilitating courses and mentoring faculty on modern digital learning frameworks and Open edX integration.",
     icon: "presentation",
@@ -352,6 +394,7 @@ export const CERTIFICATIONS = [
   {
     title: "Master & Field Trainer (Electoral Operations)",
     issuer: "National Election Board of Ethiopia",
+    issuerUrl: "https://www.nebe.gov.et/",
     description:
       "Certified and deployed across regional training cycles as an official Master and Field Trainer (2021–2026).",
     icon: "badge",
@@ -359,6 +402,7 @@ export const CERTIFICATIONS = [
   {
     title: "English Language Improvement Program (ELIP)",
     issuer: "DTU Academic Development",
+    issuerUrl: "https://dbtu.edu.et/",
     description:
       "Completed specialized professional development focused on advanced academic communication, instructional delivery, and pedagogy enhancement.",
     icon: "language",
@@ -369,24 +413,28 @@ export const EXPERIENCE = [
   {
     role: "Lecturer in Mathematics",
     organization: "Debre Tabor University",
+    organizationUrl: "https://dbtu.edu.et/",
     focus: "Undergraduate Teaching & Research (2011–Present)",
     period: "2011 — Present",
   },
   {
     role: "Creator & Educator",
     organization: "The Hybrid Math Hub",
+    organizationUrl: "https://www.youtube.com/@hybridmathhub",
     focus: "Digital Content Production & Blended Learning",
     period: "2020 — Present",
   },
   {
     role: "Layout Editor",
     organization: "Journal of Interdisciplinary Science & Technology (JIST)",
+    organizationUrl: "https://www.dtujist.com/",
     focus: "Typesetting, Design, and Editorial Standards",
     period: "2023 — Present",
   },
   {
     role: "Master / Field Trainer",
     organization: "National Election Board of Ethiopia",
+    organizationUrl: "https://www.nebe.gov.et/",
     focus: "Operational Training & Leadership (2021–2026)",
     period: "2021 — 2026",
   },
@@ -396,12 +444,14 @@ export const EDUCATION = [
   {
     degree: "Master of Science (MSc)",
     institution: "Bahir Dar University",
+    institutionUrl: "https://www.bdu.edu.et/",
     specialization: "Numerical Analysis",
     period: "2008 — 2010",
   },
   {
     degree: "Bachelor of Science (BSc)",
     institution: "Arba Minch University",
+    institutionUrl: "https://www.amu.edu.et/",
     specialization: "Applied Mathematics",
     period: "2003 — 2007",
   },

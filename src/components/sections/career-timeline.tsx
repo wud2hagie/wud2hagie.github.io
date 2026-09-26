@@ -7,12 +7,11 @@ import {
   BookOpen,
   Award,
   Flag,
-  PenLine,
+  ExternalLink,
 } from "lucide-react";
 import { CAREER_TIMELINE } from "@/lib/content";
 import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
-import { Parallax } from "@/components/micro/parallax";
 
 const ICONS: Record<string, typeof GraduationCap> = {
   education: GraduationCap,
@@ -56,10 +55,10 @@ export function CareerTimeline() {
             return (
               <motion.div
                 key={item.year + item.title}
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: i * 0.05 }}
+                transition={{ duration: 0.4, delay: i * 0.04 }}
                 className="relative flex gap-6 sm:gap-10 pb-12 last:pb-0"
               >
                 {/* Year */}
@@ -100,9 +99,22 @@ export function CareerTimeline() {
                   <h3 className="mt-1.5 font-serif-display text-xl font-semibold leading-snug text-foreground">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-gold">
-                    {item.org}
-                  </p>
+                  {/* Organization as a clickable link */}
+                  {item.orgUrl ? (
+                    <a
+                      href={item.orgUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-gold hover:underline underline-offset-2"
+                    >
+                      {item.org}
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  ) : (
+                    <p className="mt-1 text-sm font-medium text-gold">
+                      {item.org}
+                    </p>
+                  )}
                   <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
@@ -115,6 +127,3 @@ export function CareerTimeline() {
     </SectionTransition>
   );
 }
-
-void Parallax;
-void PenLine;

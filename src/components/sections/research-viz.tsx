@@ -7,23 +7,29 @@ import { SectionHeading } from "./section-heading";
 import { SectionTransition } from "@/components/micro/section-transition";
 
 /**
- * Animated visualization of the inviscid Burgers' equation solution
+ * Visualization of the inviscid Burgers' equation solution
  * u_t + u·u_x = 0 — showing wave steepening to a shock.
+ *
+ * Static by default; animates only when the user clicks Play.
  *
  * Solution (method of characteristics): u(x,t) = u_0(x - u·t)
  * With initial condition u_0(x) = sin(x), the wave steepens and forms
  * a shock at t ≈ 1.
  */
 function BurgersEquationPlot() {
-  const [time, setTime] = React.useState(0);
-  const [playing, setPlaying] = React.useState(true);
+  const [time, setTime] = React.useState(1.2); // start at a meaningful mid-state
+  const [playing, setPlaying] = React.useState(false);
 
   React.useEffect(() => {
     if (!playing) return;
     const id = setInterval(() => {
       setTime((t) => {
         const next = t + 0.005;
-        return next > 2.5 ? 0 : next;
+        if (next > 2.5) {
+          setPlaying(false);
+          return 2.5;
+        }
+        return next;
       });
     }, 30);
     return () => clearInterval(id);
@@ -152,8 +158,7 @@ function BurgersEquationPlot() {
         />
 
         {/* Current solution */}
-        <motion.polyline
-          key={points}
+        <polyline
           points={points}
           fill="none"
           stroke="oklch(0.62 0.13 75)"
@@ -247,7 +252,16 @@ export function ResearchVisualization() {
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Most numerical approaches transform Burgers&apos; equation via
-                Hopf-Cole into the linear heat equation. My published work
+                Hopf-Cole into the linear heat equation. My published work in
+                the{" "}
+                <a
+                  href="https://link.springer.com/journal/40065"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-medium text-gold hover:underline underline-offset-2"
+                >
+                  Arabian Journal of Mathematics
+                </a>{" "}
                 instead uses{" "}
                 <span className="font-semibold text-foreground">
                   quintic Hermite spline collocation

@@ -44,9 +44,21 @@ export function ResearchSpotlight() {
               </h3>
 
               {/* Venue */}
-              <p className="mt-3 text-sm font-medium text-gold">
-                {RESEARCH_SPOTLIGHT.venue}
-              </p>
+              {RESEARCH_SPOTLIGHT.venueUrl ? (
+                <a
+                  href={RESEARCH_SPOTLIGHT.venueUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-gold hover:underline underline-offset-2"
+                >
+                  {RESEARCH_SPOTLIGHT.venue}
+                  <ArrowUpRight className="h-3 w-3" />
+                </a>
+              ) : (
+                <p className="mt-3 text-sm font-medium text-gold">
+                  {RESEARCH_SPOTLIGHT.venue}
+                </p>
+              )}
 
               {/* Abstract */}
               <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
