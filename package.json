@@ -8,7 +8,7 @@
     "build:static": "NETLIFY_STATIC_EXPORT=1 next build",
     "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
     "lint": "eslint .",
-    "gen:cv": "bun run scripts/gen-cv-pdf.ts",
+    "gen:cv": "python3 scripts/gen-cv-pdf.py",
     "gen:og": "node scripts/gen-og-image.mjs",
     "db:push": "prisma db push --accept-data-loss",
     "db:generate": "prisma generate",
