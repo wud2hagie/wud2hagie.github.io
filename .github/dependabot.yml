@@ -25,6 +25,10 @@ updates:
         versions: [">=6.0.0"]
       - dependency-name: "react-syntax-highlighter"
         versions: [">=16.0.0"]
+      - dependency-name: "react-day-picker"
+        versions: [">=10.0.0"]
+      - dependency-name: "@prisma/client"
+        versions: [">=7.0.0"]
     groups:
       npm-minor-patch:
         update-types: ["minor", "patch"]
