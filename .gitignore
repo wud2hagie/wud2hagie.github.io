@@ -3,6 +3,8 @@ node_modules/
 out/
 .netlify/
 .env*
+!.env.example
+.z-ai-config
 *.log
 .DS_Store
 bun.lock
